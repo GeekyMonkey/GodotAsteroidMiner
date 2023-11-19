@@ -1,0 +1,97 @@
+[gd_scene load_steps=11 format=3 uid="uid://bv5k4dwfr2ccf"]
+
+[ext_resource type="Script" path="res://Camera3D.gd" id="1_53ebv"]
+[ext_resource type="Script" path="res://Player.gd" id="1_gvmob"]
+
+[sub_resource type="Environment" id="Environment_xkyxg"]
+background_mode = 3
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_pncd5"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8cgw6"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_agvh2"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_c4sav"]
+
+[sub_resource type="GDScript" id="GDScript_3dgrv"]
+script/source = "extends MeshInstance3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmxu6"]
+albedo_color = Color(1, 0.160784, 0.160784, 1)
+emission_enabled = true
+emission = Color(0.619608, 0.176471, 0.301961, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t71c8"]
+points = PackedVector3Array(0, 0.5, 0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xkyxg")
+camera_attributes = SubResource("CameraAttributesPractical_pncd5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+
+[node name="Asteroid" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44835, 0, 0)
+mesh = SubResource("SphereMesh_8cgw6")
+
+[node name="Asteroid2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.87175, -5.35171, 0)
+mesh = SubResource("SphereMesh_8cgw6")
+
+[node name="Asteroid3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.75007, 7.82173, 0)
+mesh = SubResource("SphereMesh_8cgw6")
+
+[node name="Asteroid4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44835, 0, 0)
+mesh = SubResource("SphereMesh_8cgw6")
+
+[node name="Asteroid5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.02505, -3.76836, 0)
+mesh = SubResource("SphereMesh_8cgw6")
+
+[node name="Asteroid6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.3684, 2.31169, 0)
+mesh = SubResource("SphereMesh_8cgw6")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+attributes = SubResource("CameraAttributesPractical_agvh2")
+projection = 1
+size = 20.0
+script = ExtResource("1_53ebv")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+axis_lock_linear_z = true
+motion_mode = 1
+script = ExtResource("1_gvmob")
+
+[node name="Ship" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(0.7, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PrismMesh_c4sav")
+skeleton = NodePath("../..")
+script = SubResource("GDScript_3dgrv")
+
+[node name="Thrust" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(-0.601116, -5.93557e-08, 0, 5.25512e-08, -0.678951, 0, 0, 0, 1, 0, -0.82018, 0)
+mesh = SubResource("PrismMesh_c4sav")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_lmxu6")
+script = SubResource("GDScript_3dgrv")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Player"]
+shape = SubResource("ConvexPolygonShape3D_t71c8")
