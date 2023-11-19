@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfcn3r1hfb5hg"]
+
+[ext_resource type="Script" path="res://Objects/Player.gd" id="1_7bcnh"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_c4sav"]
+
+[sub_resource type="GDScript" id="GDScript_3dgrv"]
+script/source = "extends MeshInstance3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmxu6"]
+albedo_color = Color(1, 0.160784, 0.160784, 1)
+emission_enabled = true
+emission = Color(0.619608, 0.176471, 0.301961, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t71c8"]
+points = PackedVector3Array(0, 0.5, 0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="Player" type="RigidBody3D"]
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+angular_damp = 10.0
+script = ExtResource("1_7bcnh")
+
+[node name="Ship" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PrismMesh_c4sav")
+skeleton = NodePath("../..")
+script = SubResource("GDScript_3dgrv")
+
+[node name="Thrust" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.601116, -5.93557e-08, 0, 5.25512e-08, -0.678951, 0, 0, 0, 1, 0, -0.82018, 0)
+mesh = SubResource("PrismMesh_c4sav")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_lmxu6")
+script = SubResource("GDScript_3dgrv")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_t71c8")

@@ -1,40 +1,32 @@
-[gd_scene load_steps=11 format=3 uid="uid://bv5k4dwfr2ccf"]
+[gd_scene load_steps=12 format=3 uid="uid://bv5k4dwfr2ccf"]
 
+[ext_resource type="PackedScene" uid="uid://dn7keyoucl4bs" path="res://Objects/Asteroid.tscn" id="1_1hxe2"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_53ebv"]
-[ext_resource type="Script" path="res://Player.gd" id="1_gvmob"]
+[ext_resource type="Texture2D" uid="uid://ow8bin3g4idh" path="res://Textures/Background/Starfield 1 - 1024x1024.png" id="2_4r2q3"]
+[ext_resource type="PackedScene" uid="uid://dfcn3r1hfb5hg" path="res://Objects/Player.tscn" id="4_b5363"]
+[ext_resource type="Script" path="res://Nebula.gd" id="6_gayt2"]
 
 [sub_resource type="Environment" id="Environment_xkyxg"]
 background_mode = 3
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_pncd5"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_8cgw6"]
-
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_agvh2"]
 
-[sub_resource type="PrismMesh" id="PrismMesh_c4sav"]
+[sub_resource type="Gradient" id="Gradient_sf7kf"]
+offsets = PackedFloat32Array(0, 0.332857, 0.47, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.095, 0.25, 0.239667, 0.94902, 0.2146, 0.37294, 0.58, 0.937255, 1, 1, 1, 1)
 
-[sub_resource type="GDScript" id="GDScript_3dgrv"]
-script/source = "extends MeshInstance3D
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mgdf4"]
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmxu6"]
-albedo_color = Color(1, 0.160784, 0.160784, 1)
-emission_enabled = true
-emission = Color(0.619608, 0.176471, 0.301961, 1)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t71c8"]
-points = PackedVector3Array(0, 0.5, 0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_06gs3"]
+width = 2000
+height = 2000
+in_3d_space = true
+generate_mipmaps = false
+seamless = true
+color_ramp = SubResource("Gradient_sf7kf")
+noise = SubResource("FastNoiseLite_mgdf4")
 
 [node name="Node3D" type="Node3D"]
 
@@ -44,29 +36,23 @@ camera_attributes = SubResource("CameraAttributesPractical_pncd5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 
-[node name="Asteroid" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44835, 0, 0)
-mesh = SubResource("SphereMesh_8cgw6")
+[node name="Asteroid" parent="." instance=ExtResource("1_1hxe2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31574, 0, 0)
 
-[node name="Asteroid2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.87175, -5.35171, 0)
-mesh = SubResource("SphereMesh_8cgw6")
+[node name="Asteroid2" parent="." instance=ExtResource("1_1hxe2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.37576, 10.157, 0)
 
-[node name="Asteroid3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.75007, 7.82173, 0)
-mesh = SubResource("SphereMesh_8cgw6")
+[node name="Asteroid3" parent="." instance=ExtResource("1_1hxe2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1979, 0, 0)
 
-[node name="Asteroid4" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44835, 0, 0)
-mesh = SubResource("SphereMesh_8cgw6")
+[node name="Asteroid4" parent="." instance=ExtResource("1_1hxe2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.52155, 4.49637, -0.790907)
 
-[node name="Asteroid5" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.02505, -3.76836, 0)
-mesh = SubResource("SphereMesh_8cgw6")
+[node name="Asteroid5" parent="." instance=ExtResource("1_1hxe2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.06303, -3.07356, 0)
 
-[node name="Asteroid6" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.3684, 2.31169, 0)
-mesh = SubResource("SphereMesh_8cgw6")
+[node name="Asteroid6" parent="." instance=ExtResource("1_1hxe2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85575, 0.951603, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
@@ -75,23 +61,15 @@ projection = 1
 size = 20.0
 script = ExtResource("1_53ebv")
 
-[node name="Player" type="CharacterBody3D" parent="."]
-axis_lock_linear_z = true
-motion_mode = 1
-script = ExtResource("1_gvmob")
+[node name="Sprite3D" type="Sprite3D" parent="Camera3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, -101.864)
+modulate = Color(0.984314, 1, 0.701961, 1)
+texture = ExtResource("2_4r2q3")
 
-[node name="Ship" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(0.7, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("PrismMesh_c4sav")
-skeleton = NodePath("../..")
-script = SubResource("GDScript_3dgrv")
+[node name="Player" parent="." instance=ExtResource("4_b5363")]
 
-[node name="Thrust" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(-0.601116, -5.93557e-08, 0, 5.25512e-08, -0.678951, 0, 0, 0, 1, 0, -0.82018, 0)
-mesh = SubResource("PrismMesh_c4sav")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_lmxu6")
-script = SubResource("GDScript_3dgrv")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Player"]
-shape = SubResource("ConvexPolygonShape3D_t71c8")
+[node name="Nebula2" type="Sprite3D" parent="."]
+transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, 0, 0, -9.08732)
+modulate = Color(0.984314, 1, 0.701961, 0.027451)
+texture = SubResource("NoiseTexture2D_06gs3")
+script = ExtResource("6_gayt2")
