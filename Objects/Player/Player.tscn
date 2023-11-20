@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dfcn3r1hfb5hg"]
 
-[ext_resource type="Script" path="res://Objects/Player.gd" id="1_7bcnh"]
+[ext_resource type="Script" path="res://Objects/Player/Player.gd" id="1_7bcnh"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_c4sav"]
 
