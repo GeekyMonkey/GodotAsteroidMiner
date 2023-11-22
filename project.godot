@@ -15,6 +15,13 @@ run/main_scene="res://GameScene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://Misc/Icon.png"
 
+[autoload]
+
+Configuration="*res://AutoLoads/Configuration.gd"
+CameraHelpers="*res://AutoLoads/CameraHelpers.gd"
+ViewportExtensions="*res://AutoLoads/ViewportExtensions.gd"
+DelayExtensions="*res://AutoLoads/DelayExtensions.gd"
+
 [physics]
 
 3d/default_gravity=0.0

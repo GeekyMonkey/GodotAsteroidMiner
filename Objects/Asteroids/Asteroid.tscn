@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dn7keyoucl4bs"]
+[gd_scene load_steps=7 format=3 uid="uid://dn7keyoucl4bs"]
 
 [ext_resource type="Script" path="res://Objects/Asteroids/Asteroid.gd" id="1_1x5rd"]
+[ext_resource type="Script" path="res://Helpers/WorldWrapper.gd" id="2_03lvl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8lb12"]
 
@@ -52,3 +53,6 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_m6mxt")
+
+[node name="WorldWrapper" type="Node3D" parent="."]
+script = ExtResource("2_03lvl")

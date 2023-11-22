@@ -54,17 +54,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.06303, -3.07356, 0)
 [node name="Asteroid6" parent="." instance=ExtResource("1_1hxe2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85575, 0.951603, 0)
 
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, -51.864)
+modulate = Color(0.984314, 1, 0.701961, 1)
+texture = ExtResource("2_4r2q3")
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
 attributes = SubResource("CameraAttributesPractical_agvh2")
 projection = 1
 size = 20.0
 script = ExtResource("1_53ebv")
-
-[node name="Sprite3D" type="Sprite3D" parent="Camera3D"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, -101.864)
-modulate = Color(0.984314, 1, 0.701961, 1)
-texture = ExtResource("2_4r2q3")
 
 [node name="Player" parent="." instance=ExtResource("4_b5363")]
 

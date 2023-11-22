@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfcn3r1hfb5hg"]
+[gd_scene load_steps=7 format=3 uid="uid://dfcn3r1hfb5hg"]
 
 [ext_resource type="Script" path="res://Objects/Player/Player.gd" id="1_7bcnh"]
+[ext_resource type="Script" path="res://Helpers/WorldWrapper.gd" id="2_3juol"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_c4sav"]
 
@@ -14,7 +15,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 "
 
@@ -48,3 +49,6 @@ script = SubResource("GDScript_3dgrv")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_t71c8")
+
+[node name="WorldWrapper" type="Node3D" parent="."]
+script = ExtResource("2_3juol")
