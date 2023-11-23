@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bv5k4dwfr2ccf"]
+[gd_scene load_steps=13 format=3 uid="uid://bv5k4dwfr2ccf"]
 
 [ext_resource type="PackedScene" uid="uid://dn7keyoucl4bs" path="res://Objects/Asteroids/Asteroid.tscn" id="1_1hxe2"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_53ebv"]
 [ext_resource type="Texture2D" uid="uid://ow8bin3g4idh" path="res://Textures/Background/Starfield 1 - 1024x1024.png" id="2_4r2q3"]
 [ext_resource type="PackedScene" uid="uid://dfcn3r1hfb5hg" path="res://Objects/Player/Player.tscn" id="4_b5363"]
 [ext_resource type="Script" path="res://Nebula.gd" id="6_gayt2"]
+[ext_resource type="PackedScene" uid="uid://ko5xlkqb3tpy" path="res://Objects/Player/PlayerStats.tscn" id="6_kv1q4"]
 
 [sub_resource type="Environment" id="Environment_xkyxg"]
 background_mode = 3
@@ -67,6 +68,10 @@ size = 20.0
 script = ExtResource("1_53ebv")
 
 [node name="Player" parent="." instance=ExtResource("4_b5363")]
+
+[node name="PlayerStats" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_kv1q4")]
+visible = false
+player = NodePath("../Player")
 
 [node name="Nebula2" type="Sprite3D" parent="."]
 transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, 0, 0, -9.08732)

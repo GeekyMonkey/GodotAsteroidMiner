@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://ko5xlkqb3tpy"]
+
+[ext_resource type="Script" path="res://Objects/Player/PlayerStats.gd" id="1_ukva1"]
+
+[node name="PlayerStats" type="Node3D" node_paths=PackedStringArray("health_label")]
+script = ExtResource("1_ukva1")
+health_label = NodePath("CanvasLayer/MarginContainer/HealthLabel")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+offset_right = 88.0
+offset_bottom = 40.0
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+text = "Health: 100"

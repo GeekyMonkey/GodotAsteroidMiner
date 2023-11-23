@@ -1,4 +1,5 @@
 extends RigidBody3D
+class_name Asteroid
 
 @export var SpinSpeed: float = 100.0
 @export var MoveSpeed: float = 10.0

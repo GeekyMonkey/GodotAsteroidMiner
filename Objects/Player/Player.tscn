@@ -31,6 +31,9 @@ points = PackedVector3Array(0, 0.5, 0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, -0.5, -0.
 axis_lock_linear_z = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
+continuous_cd = true
+max_contacts_reported = 2
+contact_monitor = true
 angular_damp = 10.0
 script = ExtResource("1_7bcnh")
 

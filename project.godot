@@ -21,9 +21,12 @@ Configuration="*res://AutoLoads/Configuration.gd"
 CameraHelpers="*res://AutoLoads/CameraHelpers.gd"
 ViewportExtensions="*res://AutoLoads/ViewportExtensions.gd"
 DelayExtensions="*res://AutoLoads/DelayExtensions.gd"
+Events="*res://AutoLoads/Events.gd"
+GameState="*res://AutoLoads/GameState.gd"
 
 [physics]
 
+3d/physics_engine="JoltPhysics3D"
 3d/default_gravity=0.0
 3d/default_linear_damp=0.0
 3d/default_angular_damp=0.0
