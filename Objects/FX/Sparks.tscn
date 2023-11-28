@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://daxfaqt0xf2ro"]
+
+[ext_resource type="Script" path="res://Objects/FX/Sparks.gd" id="1_no2am"]
+[ext_resource type="Texture2D" uid="uid://b6clwlxqany5e" path="res://addons/kenney_particle_pack/magic_05.png" id="2_kge8g"]
+[ext_resource type="AudioStream" uid="uid://i57sh8yvndar" path="res://addons/kenney sci-fi sounds/impact_metal_004.ogg" id="3_5ki1r"]
+
+[sub_resource type="Curve" id="Curve_ba2cd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xolyj"]
+curve = SubResource("Curve_ba2cd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xacoj"]
+emission_shape_scale = Vector3(0, 0, 0)
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -720.0
+angle_max = 720.0
+spread = 90.0
+initial_velocity_min = -3.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_xolyj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bevmv"]
+transparency = 1
+albedo_texture = ExtResource("2_kge8g")
+emission_enabled = true
+emission = Color(1, 0.756863, 0.509804, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_1qqj0"]
+material = SubResource("StandardMaterial3D_bevmv")
+
+[node name="Sparks" type="Node3D"]
+script = ExtResource("1_no2am")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+lifetime = 0.46
+one_shot = true
+explosiveness = 0.73
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_xacoj")
+draw_pass_1 = SubResource("QuadMesh_1qqj0")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_5ki1r")
+volume_db = 76.8
+autoplay = true
+
+[connection signal="finished" from="GPUParticles3D" to="." method="_on_gpu_particles_3d_finished"]

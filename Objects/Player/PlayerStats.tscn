@@ -4,7 +4,7 @@
 
 [node name="PlayerStats" type="Node3D" node_paths=PackedStringArray("health_label")]
 script = ExtResource("1_ukva1")
-health_label = NodePath("CanvasLayer/MarginContainer/HealthLabel")
+health_label = NodePath("CanvasLayer/MarginContainer/VBoxContainer/HealthLabel")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -12,6 +12,13 @@ health_label = NodePath("CanvasLayer/MarginContainer/HealthLabel")
 offset_right = 88.0
 offset_bottom = 40.0
 
-[node name="HealthLabel" type="Label" parent="CanvasLayer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Health: 100"
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Score: 0"

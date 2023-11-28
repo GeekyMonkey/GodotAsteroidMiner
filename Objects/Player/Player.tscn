@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfcn3r1hfb5hg"]
+[gd_scene load_steps=9 format=3 uid="uid://dfcn3r1hfb5hg"]
 
 [ext_resource type="Script" path="res://Objects/Player/Player.gd" id="1_7bcnh"]
 [ext_resource type="Script" path="res://Helpers/WorldWrapper.gd" id="2_3juol"]
+[ext_resource type="Script" path="res://Objects/Player/Thrust.gd" id="2_bbit1"]
+[ext_resource type="AudioStream" uid="uid://sldtfc2wmjt6" path="res://Objects/Player/ThrusterLoop.wav" id="3_gpi0n"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_c4sav"]
 
@@ -20,14 +22,16 @@ func _process(_delta: float) -> void:
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmxu6"]
-albedo_color = Color(1, 0.160784, 0.160784, 1)
+albedo_color = Color(0.74902, 0.109804, 0.301961, 1)
 emission_enabled = true
-emission = Color(0.619608, 0.176471, 0.301961, 1)
+emission = Color(0.839216, 0.658824, 0.133333, 1)
+emission_energy_multiplier = 4.13
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t71c8"]
 points = PackedVector3Array(0, 0.5, 0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
-[node name="Player" type="RigidBody3D"]
+[node name="Player" type="RigidBody3D" groups=["Players"]]
+collision_mask = 3
 axis_lock_linear_z = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
@@ -48,10 +52,19 @@ transform = Transform3D(-0.601116, -5.93557e-08, 0, 5.25512e-08, -0.678951, 0, 0
 mesh = SubResource("PrismMesh_c4sav")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_lmxu6")
-script = SubResource("GDScript_3dgrv")
+script = ExtResource("2_bbit1")
+
+[node name="ThrustSound" type="AudioStreamPlayer3D" parent="Thrust"]
+transform = Transform3D(-1.66357, 1.45434e-07, 0, -1.28761e-07, -1.47286, 0, 0, 0, 1, 1.19282e-07, -1.20801, 0)
+stream = ExtResource("3_gpi0n")
+volume_db = 8.533
+autoplay = true
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_t71c8")
 
 [node name="WorldWrapper" type="Node3D" parent="."]
 script = ExtResource("2_3juol")
+
+[node name="GunPosition" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.523138, 0)

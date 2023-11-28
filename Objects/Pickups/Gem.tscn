@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://dftiu678l8k8d"]
+
+[ext_resource type="Script" path="res://Objects/Pickups/Gem.gd" id="1_6oxe5"]
+[ext_resource type="Script" path="res://Helpers/WorldWrapper.gd" id="2_pejsx"]
+[ext_resource type="PackedScene" uid="uid://bmuxe3wqrvbw8" path="res://Helpers/MagneticAttractor.tscn" id="3_emltk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v8xt5"]
+radius = 0.125
+
+[sub_resource type="SphereMesh" id="SphereMesh_ijcnq"]
+radius = 0.125
+height = 0.25
+radial_segments = 8
+rings = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ikkor"]
+transparency = 1
+shading_mode = 2
+albedo_color = Color(0.0941176, 0.439216, 0, 1)
+emission_enabled = true
+emission = Color(0.25098, 0.901961, 0.262745, 1)
+emission_energy_multiplier = 1.15
+
+[node name="Gem" type="RigidBody3D" groups=["Gems"]]
+collision_layer = 8
+axis_lock_linear_z = true
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_6oxe5")
+
+[node name="GemCollisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_v8xt5")
+
+[node name="GemMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_ijcnq")
+surface_material_override/0 = SubResource("StandardMaterial3D_ikkor")
+
+[node name="WorldWrapper" type="Node3D" parent="."]
+script = ExtResource("2_pejsx")
+
+[node name="MagneticAttractor" parent="." instance=ExtResource("3_emltk")]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bv5k4dwfr2ccf"]
+[gd_scene load_steps=14 format=3 uid="uid://bv5k4dwfr2ccf"]
 
 [ext_resource type="PackedScene" uid="uid://dn7keyoucl4bs" path="res://Objects/Asteroids/Asteroid.tscn" id="1_1hxe2"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_53ebv"]
+[ext_resource type="Script" path="res://GameScene.gd" id="1_j5t0c"]
 [ext_resource type="Texture2D" uid="uid://ow8bin3g4idh" path="res://Textures/Background/Starfield 1 - 1024x1024.png" id="2_4r2q3"]
 [ext_resource type="PackedScene" uid="uid://dfcn3r1hfb5hg" path="res://Objects/Player/Player.tscn" id="4_b5363"]
 [ext_resource type="Script" path="res://Nebula.gd" id="6_gayt2"]
@@ -29,7 +30,8 @@ seamless = true
 color_ramp = SubResource("Gradient_sf7kf")
 noise = SubResource("FastNoiseLite_mgdf4")
 
-[node name="Node3D" type="Node3D"]
+[node name="Game" type="Node3D"]
+script = ExtResource("1_j5t0c")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xkyxg")

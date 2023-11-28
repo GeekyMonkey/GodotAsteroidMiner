@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmuxe3wqrvbw8"]
+
+[ext_resource type="Script" path="res://Helpers/MagneticAttractor.gd" id="1_n383j"]
+
+[node name="MagneticAttractor" type="Node3D"]
+script = ExtResource("1_n383j")
