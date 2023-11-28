@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bv5k4dwfr2ccf"]
+[gd_scene load_steps=16 format=3 uid="uid://bv5k4dwfr2ccf"]
 
 [ext_resource type="PackedScene" uid="uid://dn7keyoucl4bs" path="res://Objects/Asteroids/Asteroid.tscn" id="1_1hxe2"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_53ebv"]
@@ -30,6 +30,10 @@ seamless = true
 color_ramp = SubResource("Gradient_sf7kf")
 noise = SubResource("FastNoiseLite_mgdf4")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_jtd6l"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6ytrq"]
+
 [node name="Game" type="Node3D"]
 script = ExtResource("1_j5t0c")
 
@@ -40,7 +44,7 @@ camera_attributes = SubResource("CameraAttributesPractical_pncd5")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 
 [node name="Asteroid" parent="." instance=ExtResource("1_1hxe2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31574, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.24037, 0, 0)
 
 [node name="Asteroid2" parent="." instance=ExtResource("1_1hxe2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.37576, 10.157, 0)
@@ -80,3 +84,15 @@ transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, 0, 0, -9.08732)
 modulate = Color(0.984314, 1, 0.701961, 0.027451)
 texture = SubResource("NoiseTexture2D_06gs3")
 script = ExtResource("6_gayt2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.05032, -5.23927, 0)
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -4.93498, 9.89007, 0)
+shape = SubResource("BoxShape3D_jtd6l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(2.99924, 0, 0.0673815, 0, 3, 0, -0.0673815, 0, 2.99924, -4.98427, 9.874, 0)
+mesh = SubResource("BoxMesh_6ytrq")
