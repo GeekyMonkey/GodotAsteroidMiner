@@ -48,8 +48,6 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			angular_velocity = Vector3.ZERO
 			var forward_dir: Vector3 = transform.basis.y.bounce(norm).normalized()
 			set_linear_velocity(forward_dir * Speed)
-			look_at_from_position(global_position, global_position + forward_dir, Vector3.FORWARD, true)
-			rotate_object_local(Vector3.MODEL_RIGHT, 90)
 			collision_mask = 0
 			collision_layer = 0
 
@@ -61,8 +59,11 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			collision_mask = ColMask
 			collision_layer = ColLayer
 
-
 		else:
 			print("Laser hit: " + other.name)
+
+		# Set the rotation in line with the movement
+		look_at_from_position(global_position, global_position + linear_velocity, Vector3.UP)
+		rotate_object_local(Vector3.MODEL_RIGHT, deg_to_rad(90))
 
 		#queue_free()
